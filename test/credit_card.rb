@@ -21,4 +21,19 @@ class CreditCardTest < Minitest::Test
     assert_equal 15000, credit_card.limit
   end
 
+  def test_it_has_valid_card_number
+    credit_card = CreditCard.new("5541808923795240", 15000)
+    assert_equal true, credit_card.is_valid?
+  end
+
+  def test_it_has_an_invalid_card_number
+    credit_card2 = CreditCard.new("4024007106512380", 9000)
+    assert_equal false, credit_card2.is_valid?
+  end
+
+  def test_it_can_return_last_four_digits_of_card_number
+    credit_card = CreditCard.new("5541808923795240", 15000)
+    assert_equal "5240", credit_card.last_four
+  end
+
 end
